@@ -1,0 +1,14 @@
+{% extends 'Registro/base.html' %}
+
+{% block content %}
+<h1>Agregar Bicicleta</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_table }}
+    
+    <br>
+    <button class="btn btn-primary" type="submit">GRABAR</button>
+    <br>
+    <br>
+</form>
+{% endblock %}

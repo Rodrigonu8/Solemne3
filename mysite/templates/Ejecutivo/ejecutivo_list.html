@@ -1,0 +1,43 @@
+{% extends 'Registro/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-3">Ejecutivos</h1>
+    <hr>
+    <a class="btn btn-primary" role="button" href="{% url 'ejecutivo_form' %}">Agregar</a>
+    <hr>
+
+    {% if not object_list %}
+    <h1>No hay registro de ejecutivos</h1>
+    <br><br><br><br><br><br><br><br>
+    {% else %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Fotografia</td>
+                <td>Rut</td>
+                <td>Nombre</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ejecutivo in object_list %}
+            <tr>
+                <td><img src=../../static/images/{{ ejecutivo.fotografia }} style="width: 100px;" /> </td>
+                <td>{{ ejecutivo.rut }}</td>
+                <td>{{ ejecutivo.nombre }}</td>
+                <td>{{ ejecutivo.email }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'ejecutivo_update' ejecutivo.id%}"> Editar </a>
+                    <a class="btn btn-danger" href="{% url 'ejecutivo_borrar' ejecutivo.id%}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+</div>
+
+{% endblock %}

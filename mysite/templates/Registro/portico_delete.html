@@ -1,0 +1,14 @@
+{% extends 'Registro/base.html' %} 
+
+{% block content %}
+    <div class="text-center">
+        <form method="post">
+            {% csrf_token %}
+
+            <p class="delete-msg">¿Estás seguro de que quieres borrar el pórtico nro {{ object.id_portico }}?</p>
+
+            <a href="{% url 'listar_porticos' %}" class="btn btn-secondary">NO</a>
+            <button class="btn btn-primary" type="submit">Sí</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,128 @@
+<!-- base.html -->
+{% load static %}
+<html>
+
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    {% block css %} {% endblock css %}
+    <link rel="stylesheet" href="{% static 'css/estilos_base.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    {% block navbar %}
+    <div class="fondo">
+        <!-- Cabezera -->
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-between" id="header">
+                <img id="logo_mobike" class="col-12 col-sm-6 col-md-3" src="../static/img/Logotipo.png"
+                    href="{% url 'home' %}" alt="logo">
+            </div>
+
+            <div class="inicio">
+                <br>
+                <h1>Página principal</h1>
+                <br>
+            </div>
+            {% block content %} {% endblock content %}
+            <div class="flex-container" id="container-botones">
+                {% if not user.is_authenticated %}
+                <div class="btnid">
+                    <a type="button" class="btn btn-primary btn-lg" href="{% url 'registrar_usuario' %}">Registrar</a>
+                    <br>
+                    <a type="button" class="btn btn-primary btn-lg" href="{% url 'login' %}">Iniciar sesión</a>
+                </div>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <div class="btnid">
+                    <a type="button" class="btn btn-primary btn-lg" href="{% url 'listar_porticos' %}">Pórticos</a>
+                </div>
+                <div class="btnid">
+                    <a type="button" class="btn btn-primary btn-lg" href="{% url 'list_bicicleta' %}">Bicicletas</a>
+                </div>
+                <div class="btnid">
+                    <a type="button" class="btn btn-primary btn-lg" href="{% url 'ejecutivo_list' %}">Ejecutivo</a>
+                </div>
+                {% endif %}
+                <div class="btnid">
+                    <a type="button" class="btn btn-primary btn-lg" href="{% url 'logout' %}">Cerrar sesión</a>
+                </div>
+                {% endif %}
+                {% endblock %}
+            </div>
+            <br>
+            <br>
+            <div class="flex-container" id="texto">
+                <h3>Usa MoBike para el desplazamiento en la comuna de La Reina, Busca los aparcamientos y activa tu
+                    servicio ecológico!</h3>
+            </div>
+            <br>
+
+
+            <!-- carrusel -->
+
+            <div class="slider">
+                <ul>
+                    <li><img src="../static/img/img2.jpg" alt=""></li>
+                    <li><img src="../static/img/img1.jpg" alt=""></li>
+                    <li><img src="../static/img/img3.jpg" alt=""></li>
+                </ul>
+            </div>
+
+            <br>
+            <br>
+            <div class="flex-container">
+                <div class="card" style="width: 14rem;">
+                    <img src="../static/img/rsz_logo_la_reina.png" class="card-img-top" alt="Card image">
+                    <div class="card-body">
+                        <p class="card-text">Proyecto financiado por la Municipalidad de La Reina para una mejor
+                            experiencia de transporte por la cuidad, ecológica y rentable.</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 14rem;">
+                    <img src="../static/img/rsz_1trek_1.png" class="card-img-top" alt="Card image">
+                    <div class="card-body">
+                        <p class="card-text">Trek patrocinador oficial de MoBike, junto ellos aseeguramos una
+                            calidad impeclacle de bicicletas.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- Footer -->
+            <footer class="page-footer font-small unique-color-dark pt-4">
+
+                <!-- Footer Links -->
+                <div class="container">
+
+                <!-- Call to action -->
+                <ul class="list-unstyled list-inline text-center py-2">
+                    <li class="list-inline-item" style="color:#ffffff">
+                        <h5 class="mb-1">Registrate!</h5>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{% url 'registrar_usuario' %}" class="btn btn-light btn-rounded">Ingresa aquí!</a>
+                    </li>
+                </ul>
+                <!-- Call to action -->
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3" style="color:#ffffff">© 2020 MoBike:
+                    <a href="{% url 'home' %}"> MoBike.cl</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
+        </div>
+    </div>
+    </div>
+
+
+    {% block javascript %} {% endblock javascript %}
+</body>
+
+</html>

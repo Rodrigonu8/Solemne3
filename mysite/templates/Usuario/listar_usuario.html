@@ -1,0 +1,18 @@
+{% extends 'Registro/base.html' %} 
+
+{% block titulo_principal %} CRUD: Select * {% endblock %}
+
+{% block content %}
+   {% if object_list %}
+        {% for user in object_list %}
+            <p>Nombre: {{ user.username }}</p>
+            <p>Correo electrónico: {{ user.email }}</p>      
+
+            <br>
+        {% endfor %}
+        
+        {% else %}
+        <h1>No hay registros de usuarios</h1>
+        {% endif %}
+
+{% endblock %}

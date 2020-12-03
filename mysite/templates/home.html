@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+<!-- home.html -->
+{% block title %}Home Page{% endblock title %}
+
+{% block content %}
+<div class="jumbotron">
+    {% if user.is_authenticated %}
+    <div class="font-weight-bolder">
+        <p>Tu correo es: - {{user.email}}</p>
+    </div>
+    {% else %}
+
+    {% endif %}
+</div>
+{% endblock content %}

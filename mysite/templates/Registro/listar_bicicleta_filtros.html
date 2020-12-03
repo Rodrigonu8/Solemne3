@@ -1,0 +1,52 @@
+{% extends 'Registro/base.html' %}
+
+{% block titulo_principal %}
+
+<div id=titulo_pagina>
+    Lista de Bicicletas Registrados
+</div>
+{% endblock %}
+{% block content %}
+
+<h3>Listado de Bicicletas</h3>
+<hr>
+<a class="btn btn-primary" role="button" href="{% url 'agregar_bicicleta' %}">Agregar</a>
+<hr>
+<br>
+<form class="form-inline mb-5" method="GET">
+    <div class="form-group mx-3">
+        <label class="mr-2">Buscar por id :</label>
+        <input type="text" class="form-control mr-2" name="id-bicicleta">
+        <button class="btn btn-secondary" type="submit" name="btn-id-bicicleta">Buscar</button>
+    </div>
+</form>
+{% if object_list %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id Bicicleta</th>
+            <th>Pórtico</th>
+            <th>Modelo</th>
+            <th>Candado</th>
+            <th>Modificar Bicicleta</th>
+            <th>Eliminar Bicicleta</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for b in object_list %}
+        <tr>
+            <td> {{ b.id_bicicleta }} </td>
+            <td> {{ b.id_portico }} </td>
+            <td> {{ b.modelo }} </td>
+            <td> {{ b.candado }} </td>
+            <td><a class="btn btn-primary" href="{% url 'edit_bicicleta' b.id_bicicleta %}">Editar</a></td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'del_bicicleta' b.id_bicicleta %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h1>No hay registros de carrera</h1>
+{% endif %} {% endblock %}

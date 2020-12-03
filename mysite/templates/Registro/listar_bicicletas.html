@@ -1,0 +1,35 @@
+{% extends 'Registro/base.html' %}
+
+{% block content %}
+<div>
+  <h2>Lista de Bicicletas</h2>
+  <hr>
+  <a class="btn btn-primary" role="button" href="{% url 'agregar_bicicleta' %}">Agregar</a>
+  <hr>
+  <thead>
+    <tr>
+      <th>Id Bicicleta</th>
+      <th>Pórtico</th>
+      <th>Modelo</th>
+      <th>Candado</th>
+      <th>Modificar Bicicleta</th>
+      <th>Eliminar Bicicleta</th>
+    </tr>
+    {% for b in bicicletas %}
+    <tr>
+      <td> {{ b.id_bicicleta }} </td>
+      <td> {{ b.id_portico }} </td>
+      <td> {{ b.modelo }} </td>
+      <td> {{ b.candado }} </td>
+      <td><a class="btn btn-primary" href="{% url 'edit_bicicleta' b.id_bicicleta %}">Editar</a></td>
+      <td>
+        <a class="btn btn-danger" href="{% url 'del_bicicleta' b.id_bicicleta %}">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </thead>
+</div>
+{% endblock %}
+
+
+

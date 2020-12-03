@@ -1,0 +1,10 @@
+{% extends 'Registro/base.html' %}
+
+{% block content %}
+<h1>Editar Pórtico</h1>
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit">Editar</button>
+</form>
+{% endblock %}

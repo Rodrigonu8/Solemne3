@@ -1,0 +1,32 @@
+{% extends 'Registro/base.html' %}
+
+{% block content %}
+<div>
+  
+  
+  <h2>Lista de Pórticos</h2>
+  <br>
+
+
+  <br>
+  <thead>
+    <tr>
+      <th>Id Pórtico</th>
+      <th>Ubicación</th>
+      <th>Modificar Pórtico</th>
+      <th>Eliminar Pórtico</th>
+    </tr>
+    {% for p in porticos %}
+    <tr>
+      <td> {{ p.id_portico }} </td>
+      <td> {{ p.ubicacion }} </td>
+      <td><a class="btn btn-primary" href="{% url 'edit_portico' p.id_portico %}">Editar</a></td>
+      <td>
+        <a class="btn btn-danger" href="{% url 'del_portico' p.id_portico %}">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </thead>
+  <a class="btn btn-primary" role="button" href="{% url 'agregar_portico' %}">Agregar</a>
+</div>
+{% endblock %}

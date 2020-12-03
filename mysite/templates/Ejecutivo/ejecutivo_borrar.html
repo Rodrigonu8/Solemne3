@@ -1,0 +1,26 @@
+{% extends 'Registro/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+
+    <div class="container mb-3 mt-3">
+
+        <form method="POST">{% csrf_token %}
+
+            <div>
+
+                <h3>¿Desea eliminar el registro {{object.nombre}}?</h3><br>
+                <button class="btn btn-danger" type="submit">Si</button>
+                <a class="btn btn-default" href="{% url 'ejecutivo_list' %}">Cancelar</a>
+
+            </div>
+
+        </form>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+
+    </div>
+
+</body>
+{% endblock %}
