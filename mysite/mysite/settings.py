@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social_django',  # <--- this
     'social.apps.django_app.default',
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,25 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = 'mobike.chile.duoc@gmail.com'
 EMAIL_HOST_PASSWORD = 'mobike123'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+#pwa
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+PWA_APP_NAME = 'Proyecto MoBike'
+PWA_APP_DESCRIPTION = 'MoBike Web App DUOC'
+PWA_APP_THEME_COLOR = '#F07800'
+PWA_APP_BACKGROUND_COLOR = '#fff'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/img/Isotipo.png',
+        'sizes': '128x128'
+    },
+    {
+        'src': '/static/img/Isotipo.png',
+        'sizes': '256x256'
+    },
+    {
+        'src': '/static/img/Isotipo.png',
+        'sizes': '512x512'
+    }
+]
+

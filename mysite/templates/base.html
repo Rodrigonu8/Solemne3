@@ -1,6 +1,9 @@
 <!-- base.html -->
+
 {% load static %}
 <html>
+{% load pwa %}
+{% progressive_web_app_meta %}
 
 <head>
     <title>{% block title %}{% endblock title %}</title>
@@ -98,22 +101,22 @@
                 <!-- Footer Links -->
                 <div class="container">
 
-                <!-- Call to action -->
-                <ul class="list-unstyled list-inline text-center py-2">
-                    <li class="list-inline-item" style="color:#ffffff">
-                        <h5 class="mb-1">Registrate!</h5>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="{% url 'registrar_usuario' %}" class="btn btn-light btn-rounded">Ingresa aquí!</a>
-                    </li>
-                </ul>
-                <!-- Call to action -->
+                    <!-- Call to action -->
+                    <ul class="list-unstyled list-inline text-center py-2">
+                        <li class="list-inline-item" style="color:#ffffff">
+                            <h5 class="mb-1">Registrate!</h5>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'registrar_usuario' %}" class="btn btn-light btn-rounded">Ingresa aquí!</a>
+                        </li>
+                    </ul>
+                    <!-- Call to action -->
 
-                <!-- Copyright -->
-                <div class="footer-copyright text-center py-3" style="color:#ffffff">© 2020 MoBike:
-                    <a href="{% url 'home' %}"> MoBike.cl</a>
-                </div>
-                <!-- Copyright -->
+                    <!-- Copyright -->
+                    <div class="footer-copyright text-center py-3" style="color:#ffffff">© 2020 MoBike:
+                        <a href="{% url 'home' %}"> MoBike.cl</a>
+                    </div>
+                    <!-- Copyright -->
 
             </footer>
             <!-- Footer -->

@@ -37,5 +37,5 @@ urlpatterns = [
 
 # redes sociales
     path('', include('social_django.urls', namespace='social')),
-
+    path('', include('pwa.urls')),
 ]
