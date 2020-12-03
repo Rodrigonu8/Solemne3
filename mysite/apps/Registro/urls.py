@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from django.contrib.auth.views import login_required
-
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
 
@@ -48,4 +48,15 @@ urlpatterns = [
     path('del_bicicleta/<int:pk>', views.BicicletaDelete.as_view(), name='del_bicicleta'),
     # listar con filtros
     path('listar_bicicleta', views.ListBicicleta , name="list_bicicleta"), 
+
+
+    # api
+    path('api/', views.API_objects.as_view()),
+    path('api/<int:pk>/', views.API_objects_details.as_view()),
+
+     # api
+    path('bicicletas/',  views.bicicleta_collection , name='bicicleta_collection'),
+    path('bicicletas/<int:pk>/', views.bicicleta_element ,name='bicicleta_element')
+
 ]
+urlpatterns = format_suffix_patterns(urlpatterns)

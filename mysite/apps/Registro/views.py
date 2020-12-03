@@ -4,6 +4,54 @@ from .models import Portico, Bicicleta
 from .forms import porticoForm, bicicletaForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
+from rest_framework import status
+# api
+from rest_framework import generics
+from .serializers import PorticoSerializer
+from django.http import HttpResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import BicicletaSerializer
+from django.shortcuts import render, redirect, get_object_or_404
+
+class API_objects(generics.ListCreateAPIView):
+    queryset = Portico.objects.all()
+    serializer_class = PorticoSerializer
+
+class API_objects_details(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Portico.objects.all()
+    serializer_class = PorticoSerializer
+
+# api bicicleta
+@api_view(['GET'])
+def bicicleta_collection(request):
+    if request.method == 'GET':
+        bicicletas = Bicicleta.objects.all()
+        serializer = BicicletaSerializer(bicicletas, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def bicicleta_element(request, pk):
+    bicicleta = get_object_or_404(Bicicleta, id_bicicleta=pk)
+ 
+    if request.method == 'GET':
+        serializer = BicicletaSerializer(bicicleta)
+        return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
+def bicicleta_collection(request):
+    if request.method == 'GET':
+        bicicletas = Bicicleta.objects.all()
+        serializer = BicicletaSerializer(bicicletas, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = BicicletaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            # Si el proceso de deserialización funciona, devolvemos una respuesta con un código 201 (creado
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # si falla el proceso de deserialización, devolvemos una respuesta 400
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # listar porticos y bicicletas
 
