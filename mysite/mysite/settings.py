@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'apps.Usuario',
     'apps.Ejecutivo',
     'rest_framework',
+    'social_django',  # <--- this
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -66,11 +69,26 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
             ],
         },
     },
 ]
+AUTHENTICATION_BACKENDS = [
+                'social.backends.facebook.FacebookAppOAuth2',
+                'social.backends.facebook.FacebookOAuth2',
+                'django.contrib.auth.backends.ModelBackend',
+                'social_core.backends.facebook.FacebookOAuth2',
+                'social_core.backends.google.GoogleOAuth2',
+]
 
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_FACEBOOK_KEY = '452089436191234'
+SOCIAL_AUTH_FACEBOOK_SECRET = '27d57fc6010d67fb70669a01a1df48d3'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '714172243913-7t1bjcncg9ha0lfarbptkpcit7hu8fvm.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'BUksIpqwxFaixVYVGzXvQcRh'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -87,7 +105,6 @@ DATABASES = {
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-
 
 
 # Password validation
@@ -129,8 +146,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'images')
-STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'static-only')
+MEDIA_ROOT = os.path.join(os.path.dirname(
+    os.path.dirname(__file__)), 'static', 'images')
+STATIC_ROOT = os.path.join(os.path.dirname(
+    os.path.dirname(__file__)), 'static', 'static-only')
 
 
 EMAIL_USE_TLS = True
